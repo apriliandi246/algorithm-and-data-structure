@@ -6,7 +6,7 @@ function binarySearch(arr, data) {
       for (let i = 0; i < arr.length - 1; i++) {
             imin = i;
 
-            for (let j = i; j < arr.length; j++) {
+            for (let j = i; j < arr.l ength; j++) {
                   if (arr[j] < arr[imin]) {
                         imin = j;
                   }
