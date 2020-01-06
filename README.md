@@ -2,5 +2,7 @@
 
 ###### - Stack
 ###### - Queue
+###### - Map
 ###### - Linked List
 ###### - Sort Algorith
+###### - Search Algorith
