@@ -4,13 +4,12 @@ class MaxHeap {
             this.result = [];
       }
 
+
       // menambah data
       insert(num) {
-
             this.heap.push(num);
 
             if (this.heap.length > 2) {
-
                   let idx = this.heap.length - 1;
 
                   while (this.heap[idx] > this.heap[Math.floor(idx / 2)]) {
@@ -24,7 +23,6 @@ class MaxHeap {
                               break;
                         }
                   }
-
             }
 
       }
@@ -48,14 +46,12 @@ class MaxHeap {
 
                   // jika data cuma ada 3
                   if (this.heap.length === 3) {
-
                         // jika parentnya lebih besar dari childnya
                         if (this.heap[1] < this.heap[2]) {
                               [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
                         }
 
                         return smallest;
-
                   }
 
                   let i = 1;
@@ -64,7 +60,6 @@ class MaxHeap {
 
                   // membandingkan parent dengan child-childnya
                   while (this.heap[i] <= this.heap[left] || this.heap[i] <= this.heap[right]) {
-
                         // jika right child lebih besar dari left child
                         if (this.heap[right] > this.heap[left]) {
                               [this.heap[i], this.heap[right]] = [this.heap[right], this.heap[i]];
@@ -83,7 +78,6 @@ class MaxHeap {
                         if (this.heap[left] === undefined || this.heap[right] === undefined) {
                               break;
                         }
-
                   }
 
             } else if (this.heap.length === 2) {
@@ -108,8 +102,8 @@ class MaxHeap {
                         rightChild: this.heap[i * 2 + 1] ? this.heap[i * 2 + 1] : null,
                         leftChild: this.heap[i * 2] ? this.heap[i * 2] : null
                   }
-
                   return result;
+
             } else {
                   return 'Data not found';
             }

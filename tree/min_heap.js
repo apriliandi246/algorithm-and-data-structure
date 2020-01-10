@@ -62,7 +62,6 @@ class MinHeap {
 
                   // membandingkan parent dengan child-childnya
                   while (this.heap[i] >= this.heap[left] || this.heap[i] >= this.heap[right]) {
-
                         // jika child left lebih kecil dari child right
                         if (this.heap[left] < this.heap[right]) {
                               [this.heap[i], this.heap[left]] = [this.heap[left], this.heap[i]];
@@ -82,7 +81,6 @@ class MinHeap {
                         if (this.heap[left] === undefined || this.heap[right] === undefined) {
                               break;
                         }
-
                   }
 
             } else if (this.heap.length === 2) {
@@ -106,8 +104,8 @@ class MinHeap {
                         rightChild: this.heap[i * 2 + 1] ? this.heap[i * 2 + 1] : null,
                         leftChild: this.heap[i * 2] ? this.heap[i * 2] : null
                   }
-
                   return result;
+
             } else {
                   return 'Data not found';
             }
