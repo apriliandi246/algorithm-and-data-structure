@@ -7,3 +7,4 @@
 ###### - Sort Algorith
 ###### - Search Algorith
 ###### - Heap
+###### - Hash Table
