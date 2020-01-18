@@ -11,7 +11,7 @@ class MinHeap {
       }
 
 
-      insert(data) {
+      insertData(data) {
             this.heap.push(data);
 
             if (this.heap.length >= 2) {
@@ -40,6 +40,7 @@ class MinHeap {
                         }
 
                         this.sort.push(this.heap.shift(), this.heap.shift());
+                        return;
                   }
 
                   let p = 0;
@@ -98,19 +99,19 @@ class MinHeap {
 
 const heap = new MinHeap();
 
-heap.insert(10);
-heap.insert(2);
-heap.insert(12);
-heap.insert(9);
-heap.insert(1);
-heap.insert(3);
-heap.insert(4);
-heap.insert(5);
-heap.insert(0);
-heap.insert(-1);
-heap.insert(40);
-heap.insert(13);
-heap.insert(130);
+heap.insertData(10);
+heap.insertData(2);
+heap.insertData(12);
+heap.insertData(9);
+heap.insertData(1);
+heap.insertData(3);
+heap.insertData(4);
+heap.insertData(5);
+heap.insertData(0);
+heap.insertData(-1);
+heap.insertData(40);
+heap.insertData(13);
+heap.insertData(130);
 
 console.log(heap.heap);
 
