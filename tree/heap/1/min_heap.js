@@ -1,3 +1,9 @@
+// Rumus : 
+// parent: i / 2
+// left-child: i * 2 
+// right-child: i * 2 + 1
+
+
 class MinHeap {
       constructor() {
             this.heap = [null];
