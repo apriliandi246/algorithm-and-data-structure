@@ -4,29 +4,31 @@
 // right-child = 2 * p + 2 
 
 
-class MinHeap {
+class MaxHeap {
       constructor() {
             this.heap = [];
             this.sort = [];
       }
 
-
+      // menambah data 
       insertData(data) {
+
             this.heap.push(data);
 
-            if (this.heap.length >= 2) {
+            if (this.heap.length > 2) {
                   let idx = this.heap.length - 1;
 
-                  while (this.heap[idx] < this.heap[Math.floor((idx - 1) / 2)]) {
+                  while (this.heap[idx] > this.heap[Math.floor((idx - 1) / 2)]) {
                         [this.heap[Math.floor((idx - 1) / 2)], this.heap[idx]] = [this.heap[idx], this.heap[Math.floor((idx - 1) / 2)]];
 
                         idx = Math.floor((idx - 1) / 2);
                   }
             }
+
       }
 
 
-      remmoveData() {
+      removeData() {
 
             if (this.heap.length > 2) {
 
@@ -36,22 +38,17 @@ class MinHeap {
 
                   if (this.heap.length === 2) {
                         if (this.heap[0] > this.heap[1]) {
-                              [this.heap[0], this.heap[1]] = [this.heap[1], this.heap[0]];
+                              this.sort.push(this.heap.shift(), this.heap.shift());
+                              return;
                         }
-
-                        this.sort.push(this.heap.shift(), this.heap.shift());
-                        return;
                   }
 
                   let p = 0;
                   let left = 2 * p + 1;
                   let right = 2 * p + 2;
 
-
-                  while (this.heap[p] >= this.heap[left] || this.heap[p] >= this.heap[right]) {
-
-                        // jika  child left lebih kecil dari child right
-                        if (this.heap[left] < this.heap[right]) {
+                  while (this.heap[p] <= this.heap[left] || this.heap[p] <= this.heap[right]) {
+                        if (this.heap[left] > this.heap[right]) {
                               [this.heap[p], this.heap[left]] = [this.heap[left], this.heap[p]];
 
                               p = 2 * p + 1;
@@ -68,12 +65,11 @@ class MinHeap {
                         if (this.heap[left] === undefined || this.heap[right] === undefined) {
                               break;
                         }
-
                   }
 
             }
-      }
 
+      }
 
 
       findData(data) {
@@ -98,7 +94,7 @@ class MinHeap {
 }
 
 
-const heap = new MinHeap();
+const heap = new MaxHeap();
 
 heap.insertData(10);
 heap.insertData(2);
@@ -107,29 +103,22 @@ heap.insertData(9);
 heap.insertData(1);
 heap.insertData(3);
 heap.insertData(4);
-heap.insertData(5);
 heap.insertData(0);
-heap.insertData(-1);
-heap.insertData(40);
-heap.insertData(13);
-heap.insertData(130);
+heap.insertData(8);
+heap.insertData(6);
+heap.insertData(5);
+heap.insertData(7);
+heap.insertData(11);
+
 
 console.log(heap.heap);
 
-console.log("\n");
+console.log(heap.findData(6));
 
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
-heap.remmoveData();
+let size = heap.heap.length;
 
-console.log(heap.heap);
+for (let i = 0; i < size; i++) {
+      heap.removeData();
+}
+
 console.log(heap.sort);
