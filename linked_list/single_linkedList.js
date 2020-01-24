@@ -110,6 +110,25 @@ class LinkedList {
             return null;
       }
 
+
+      // get the middle data
+      getMiddle() {
+            if (this.head === null) {
+                  return null;
+            }
+
+            let slow = this.head;
+            let fast = this.head;
+
+            while (fast !== null && fast.next !== null) {
+                  fast = fast.next.next;
+                  slow = slow.next;
+            }
+
+            return slow.data;
+      }
+
+
       // print all data
       printData() {
             let current = this.head;
@@ -138,9 +157,15 @@ let ll = new LinkedList();
 ll.insertFirst(10);
 ll.insertLast(20);
 ll.insertAt(5, 1);
-ll.removeAt(1);
-ll.printData();
-ll.clearListData();
+ll.insertLast(40);
+ll.insertLast(50);
 
 console.log(ll.getAt(0));
-console.log(ll.head);
+
+console.log("\n");
+
+console.log(ll.getMiddle());
+
+console.log("\n");
+
+ll.printData();
