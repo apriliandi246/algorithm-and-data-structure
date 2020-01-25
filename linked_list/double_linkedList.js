@@ -135,6 +135,24 @@ class DoubleLinkedList {
       }
 
 
+      // get data in the middle
+      getMiddle() {
+            if (this.head === null) {
+                  return null;
+            }
+
+            let slow = this.head;
+            let fast = this.head;
+
+            while (fast !== null && fast.next !== null) {
+                  fast = fast.next.next;
+                  slow = slow.next;
+            }
+
+            return slow.data;
+      }
+
+
       // print all data
       printList() {
             if (this.size == 0) {
@@ -180,8 +198,13 @@ dll.insertLast(20);
 dll.insertAt(3, 12);
 dll.removeAt(1);
 dll.insertLast(1);
+dll.insertLast(19);
 dll.printList();
 
 console.log(dll.getData(20));
 
 console.log(dll.sizeData());
+
+console.log("\n");
+
+console.log(dll.getMiddle());
