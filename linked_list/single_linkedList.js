@@ -70,6 +70,30 @@ class LinkedList {
       }
 
 
+      // remove the first data
+      removeFirst() {
+            if (this.size >= 1) {
+                  this.head = this.head.next;
+                  this.size--;
+            }
+      }
+
+
+      // remove the last data
+      removeLast() {
+            let current = this.head;
+            let prev;
+
+            while (current.next) {
+                  prev = current;
+                  current = current.next;
+            }
+
+            prev.next = null;
+            this.size--;
+      }
+
+
       // remove at index
       removeAt(index) {
             if (index > 0 && index > this.size) {
@@ -94,8 +118,16 @@ class LinkedList {
       }
 
 
-      // get data at
+      // get data at (index)
       getAt(index) {
+            if (this.head === null) {
+                  return null;
+            }
+
+            if (index > this.size - 1) {
+                  return null;
+            }
+
             let current = this.head;
             let count = 0;
 
@@ -103,11 +135,31 @@ class LinkedList {
                   if (count === index) {
                         return `Data => ${current.data}`;
                   }
+
                   current = current.next;
                   count++;
             }
 
             return null;
+      }
+
+
+      // get data
+      getData(data) {
+            if (this.head === null) {
+                  return null;
+            }
+
+            let current = this.head;
+
+            while (current) {
+                  if (current.data === data) {
+                        return true;
+                  }
+                  current = current.next;
+            }
+
+            return "---- Data not found ----";
       }
 
 
@@ -131,19 +183,36 @@ class LinkedList {
 
       // print all data
       printData() {
-            let current = this.head;
-            let result = "";
+            if (this.size === 0) {
+                  console.log("---- Data is empty ----");
+                  return;
 
-            while (current) {
-                  result += current.data + " => ";
-                  current = current.next;
+            } else {
+
+                  let current = this.head;
+                  let result = "";
+
+                  while (current) {
+                        result += current.data + " => ";
+                        current = current.next;
+                  }
+
+                  console.log(result + null);
             }
-
-            console.log(result + null);
       }
 
+
+      sizeData() {
+            if (this.size === 0) {
+                  return "---- Data is Empty ----";
+            } else {
+                  return "Data => " + this.size;
+            }
+      }
+
+
       // clear all data
-      clearListData() {
+      cleartData() {
             this.head = null;
             this.size = 0;
       }
@@ -159,13 +228,16 @@ ll.insertLast(20);
 ll.insertAt(5, 1);
 ll.insertLast(40);
 ll.insertLast(50);
+ll.removeAt(0);
 
 console.log(ll.getAt(0));
 
-console.log("\n");
-
 console.log(ll.getMiddle());
 
-console.log("\n");
+ll.removeFirst();
+
+ll.removeLast();
 
 ll.printData();
+
+console.log(ll.getData(50));

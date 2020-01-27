@@ -75,9 +75,9 @@ class DoubleLinkedList {
       }
 
 
-      // remove first
+      // remove the first data
       removeFirst() {
-            if (this.size > 1) {
+            if (this.size >= 1) {
                   this.head = this.head.next;
                   this.head.prev = null;
                   this.size--;
@@ -85,7 +85,7 @@ class DoubleLinkedList {
       }
 
 
-      // remove lasts
+      // remove the last data
       removeLast() {
             let current = this.head;
             let previous;
@@ -120,8 +120,34 @@ class DoubleLinkedList {
       }
 
 
+      // get data at
+      getAt(index) {
+            if (index > this.sizeData - 1) {
+                  return null;
+            }
+
+            let current = this.head;
+            let count = 0;
+
+            while (current) {
+                  if (count === index) {
+                        return `Data => ${current.data}`;
+                  }
+
+                  current = current.next;
+                  count++;
+            }
+
+            return null;
+      }
+
+
       // get data
       getData(data) {
+            if (this.head === null) {
+                  return null;
+            }
+
             let current = this.head;
 
             while (current) {
@@ -154,7 +180,7 @@ class DoubleLinkedList {
 
 
       // print all data
-      printList() {
+      printData() {
             if (this.size == 0) {
                   console.log("---- Data is empty ----");
                   return;
@@ -182,6 +208,7 @@ class DoubleLinkedList {
             }
       }
 
+
       // clear all data
       clearData() {
             this.head = null;
@@ -199,12 +226,14 @@ dll.insertAt(3, 12);
 dll.removeAt(1);
 dll.insertLast(1);
 dll.insertLast(19);
-dll.printList();
+dll.printData();
 
 console.log(dll.getData(20));
 
 console.log(dll.sizeData());
 
-console.log("\n");
-
 console.log(dll.getMiddle());
+
+console.log(dll.sizeData());
+
+console.log(dll.getAt(4));
