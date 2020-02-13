@@ -180,6 +180,22 @@ class LinkedList {
             return slow.data;
       }
 
+      // reverse linked list
+      reverse() {
+            let prev;
+            let next;
+            let curr = this.head;
+
+            while (curr !== null) {
+                  next = curr.next;
+                  curr.next = prev;
+                  prev = curr;
+                  curr = next;
+            }
+
+            this.head = prev;
+            return prev;
+      }
 
       // print all data
       printData() {
@@ -225,19 +241,15 @@ let ll = new LinkedList();
 
 ll.insertFirst(10);
 ll.insertLast(20);
-ll.insertAt(5, 1);
+ll.insertLast(30);
 ll.insertLast(40);
 ll.insertLast(50);
-ll.removeAt(0);
 
-console.log(ll.getAt(0));
 
 console.log(ll.getMiddle());
 
-ll.removeFirst();
-
-ll.removeLast();
-
+ll.printData();
+ll.reverse();
 ll.printData();
 
-console.log(ll.getData(50));
+console.log(ll.sizeData());
