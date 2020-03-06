@@ -30,18 +30,19 @@ class DoubleLinkedList {
 
             if (this.head === null) {
                   this.head = node;
-                  return;
-            }
+                  this.size++;
 
-            while (current) {
-                  previous = current;
-                  current = current.next;
-            }
+            } else {
+                  while (current) {
+                        previous = current;
+                        current = current.next;
+                  }
 
-            previous.next = node;
-            previous.next.prev = previous;
-            this.tail = node;
-            this.size++;
+                  previous.next = node;
+                  previous.next.prev = previous;
+                  this.tail = node;
+                  this.size++;
+            }
       }
 
 
@@ -224,7 +225,7 @@ class DoubleLinkedList {
 
 const dll = new DoubleLinkedList();
 
-dll.insertFirst(10);
+
 dll.insertLast(15);
 dll.insertLast(20);
 dll.insertLast(25);
