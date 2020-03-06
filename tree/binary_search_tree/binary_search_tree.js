@@ -12,7 +12,6 @@ class BST {
             this.root = null;
       }
 
-
       // menambahkan data
       add(data) {
             const node = this.root;
@@ -48,7 +47,6 @@ class BST {
                   searchTree(node);
             }
       }
-
 
       // menghapus data
       remove(data) {
@@ -92,7 +90,6 @@ class BST {
             this.root = removeNode(this.root, data);
       }
 
-
       // menemukan data terkecil
       findMinData() {
             let current = this.root;
@@ -104,7 +101,6 @@ class BST {
             return `Min Data => ${current.data}`;
       }
 
-
       // menemukan data terbesar
       findMaxData() {
             let current = this.root;
@@ -115,7 +111,6 @@ class BST {
 
             return `Max Data => ${current.data}`;
       }
-
 
       // menemukan data
       findData(data) {
@@ -135,7 +130,6 @@ class BST {
 
             return current;
       }
-
 
       // Step :
       // - Left, Root, Right
@@ -178,7 +172,6 @@ class BST {
             }
       }
 
-
       // Step :
       // - Left, Right, Root
       postOrder() {
@@ -199,7 +192,7 @@ class BST {
             }
       }
 
-
+      // using Queue data structures
       levelOrder() {
             let result = [];
             let Q = [];
@@ -209,6 +202,7 @@ class BST {
 
                   while (Q.length > 0) {
                         let node = Q.shift();
+
                         result.push(node.data);
 
                         if (node.left !== null) {
@@ -232,7 +226,6 @@ class BST {
       clearData() {
             this.root = null;
       }
-
 }
 
 

@@ -183,29 +183,6 @@ class DoubleLinkedList {
             return slow.data;
       }
 
-      reverse() {
-            let previous = null;
-            let curr = this.head;
-            let next = null;
-
-            while (curr !== null) {
-                  next = curr.next;
-                  curr.next = previous;
-                  curr.prev = null;
-
-                  // MENGUBAH DATA PREV, BILA DATA YA LEBIH DARI SATU
-                  if (previous !== null) {
-                        previous = curr;
-
-                        curr = next;
-                        continue;
-                  }
-
-                  previous = curr;
-                  curr = next;
-            }
-            return previous;
-      }
 
       // print all data
       printData() {
@@ -249,5 +226,8 @@ const dll = new DoubleLinkedList();
 
 dll.insertFirst(10);
 dll.insertLast(15);
+dll.insertLast(20);
+dll.insertLast(25);
+dll.insertLast(30);
 
-console.log(dll.reverse());
+dll.printData();
