@@ -7,7 +7,6 @@ if (data.length % 2 === 0) {
                   openBracket.push(data[i]);
 
             } else if (data[i] === ')' || data[i] === '}' || data[i] === ']') {
-
                   if (openBracket[openBracket.length - 1] === '(' && data[i] === ')') {
                         console.log(`${openBracket[openBracket.length - 1]} ${data[i]} = ${true}`);
                         openBracket.pop();
@@ -24,7 +23,6 @@ if (data.length % 2 === 0) {
                         console.log(`${openBracket[openBracket.length - 1]} ${data[i]} = ${false}`);
                         openBracket.pop();
                   }
-
             }
       }
 

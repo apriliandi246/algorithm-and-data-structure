@@ -21,11 +21,7 @@ class Stack {
       }
 
       printStack() {
-            let str = "";
-            for (let i = 0; i < this.items.length; i++) {
-                  str += this.items[i] + " ";
-            }
-            return str;
+            this.items.forEach(data => console.log(data));
       }
 }
 
@@ -37,6 +33,6 @@ stack.push(13);
 stack.push(14);
 stack.pop();
 
-console.log(stack.printStack());
+stack.printStack();
 console.log(stack.peek());
 console.log(stack.isEmpty());

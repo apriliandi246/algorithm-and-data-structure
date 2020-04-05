@@ -12,7 +12,6 @@ function arithmeticStack(numbers) {
                   temp += arrNumber[i];
 
             } else if (arrNumber[i] === '+' || arrNumber[i] === '-' || arrNumber[i] === '*' || arrNumber[i] === '/') {
-
                   if (temp.length > 0) {
                         operan.push(parseInt(temp));
                         temp = "";
@@ -76,7 +75,6 @@ function arithmeticStack(numbers) {
       }
 
       return result;
-
 }
 
 console.log(arithmeticStack('12+(2*2)+10+10-(2-1)'));
