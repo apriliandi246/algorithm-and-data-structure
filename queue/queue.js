@@ -32,13 +32,7 @@ class Queue {
       }
 
       printQueue() {
-            let str = "";
-
-            for (let i = 0; i < this.collection.length; i++) {
-                  str += this.collection[i] + " ";
-            }
-
-            return str;
+            this.collection.forEach(data => console.log(data));
       }
 }
 
@@ -51,4 +45,4 @@ queue.enqueue(14);
 queue.enqueue(15);
 queue.dequeue();
 
-console.log(queue.printQueue());
+queue.printQueue();
