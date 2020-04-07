@@ -5,13 +5,11 @@ class Node {
       }
 }
 
-
 class LinkedList {
       constructor() {
             this.head = null;
             this.size = 0;
       }
-
 
       // Insert first node
       insertFirst(data) {
@@ -19,16 +17,14 @@ class LinkedList {
             this.size++;
       }
 
-
       // insert last
       insertLast(data) {
             let node = new Node(data);
-            let current;
 
             if (!this.head) {
                   this.head = node;
             } else {
-                  current = this.head;
+                  let current = this.head;
 
                   while (current.next) {
                         current = current.next;
@@ -39,7 +35,6 @@ class LinkedList {
 
             this.size++;
       }
-
 
       // insert at
       insertAt(data, index) {
@@ -52,11 +47,10 @@ class LinkedList {
                   return;
             }
 
-            let node = new Node(data);
-            let current, previous;
+            let previous;
             let count = 0;
-
-            current = this.head;
+            let current = this.head;
+            let node = new Node(data);
 
             while (count < index) {
                   previous = current;
@@ -69,7 +63,6 @@ class LinkedList {
             this.size++;
       }
 
-
       // remove the first data
       removeFirst() {
             if (this.size >= 1) {
@@ -78,11 +71,10 @@ class LinkedList {
             }
       }
 
-
       // remove the last data
       removeLast() {
-            let current = this.head;
             let prev;
+            let current = this.head;
 
             while (current.next) {
                   prev = current;
@@ -100,9 +92,9 @@ class LinkedList {
                   return false;
             }
 
-            let current = this.head;
             let previous;
             let count = 0;
+            let current = this.head;
 
             if (index === 0) {
                   this.head = current.next;
@@ -114,9 +106,8 @@ class LinkedList {
                   }
                   previous.next = current.next;
             }
-            this.size++;
+            this.size--;
       }
-
 
       // get data at (index)
       getAt(index) {
@@ -128,8 +119,8 @@ class LinkedList {
                   return null;
             }
 
-            let current = this.head;
             let count = 0;
+            let current = this.head;
 
             while (current) {
                   if (count === index) {
@@ -142,7 +133,6 @@ class LinkedList {
 
             return null;
       }
-
 
       // get data
       getData(data) {
@@ -161,7 +151,6 @@ class LinkedList {
 
             return "---- Data not found ----";
       }
-
 
       // get the middle data
       getMiddle() {
@@ -194,7 +183,6 @@ class LinkedList {
             }
 
             this.head = prev;
-            return prev;
       }
 
       // print all data
@@ -204,9 +192,8 @@ class LinkedList {
                   return;
 
             } else {
-
-                  let current = this.head;
                   let result = "";
+                  let current = this.head;
 
                   while (current) {
                         result += current.data + " => ";
@@ -217,7 +204,7 @@ class LinkedList {
             }
       }
 
-
+      // check size of linked lis
       sizeData() {
             if (this.size === 0) {
                   return "---- Data is Empty ----";
@@ -225,7 +212,6 @@ class LinkedList {
                   return "Data => " + this.size;
             }
       }
-
 
       // clear all data
       cleartData() {
@@ -235,21 +221,20 @@ class LinkedList {
 }
 
 
-
 let ll = new LinkedList();
-
 
 ll.insertFirst(10);
 ll.insertLast(20);
 ll.insertLast(30);
 ll.insertLast(40);
 ll.insertLast(50);
-
-
-console.log(ll.getMiddle());
+ll.insertAt(15, 1);
+ll.insertLast(60);
 
 ll.printData();
+
 ll.reverse();
-ll.printData();
 
-console.log(ll.sizeData());
+ll.insertLast(5);
+
+ll.printData();
