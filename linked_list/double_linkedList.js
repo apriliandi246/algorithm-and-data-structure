@@ -98,13 +98,44 @@ class DoubleLinkedList {
     }
 
 
+    getData(data) {
+        if (!this.head) return null;
+
+        let current = this.head;
+
+        while (current) {
+            if (current.data === data) return true;
+
+            current = current.next;
+        }
+
+        return false;
+    }
+
+
+    getMiddle() {
+        if (!this.head) return null;
+
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast !== null && fast.next !== null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return slow.data;
+    }
+
+
     sizeData() {
         return this.size;
     }
 
 
     clearData() {
-        this.head = null
+        this.head = null;
+        this.size = 0;
     }
 }
 
@@ -114,8 +145,11 @@ const dl = new DoubleLinkedList();
 
 dl.insert(10);
 dl.insert(20);
-dl.insertAt(1, 15);
-dl.removeAt(2);
+dl.insert(30);
+
+
+console.log(dl.getMiddle());
+console.log(dl.getData(30));
 
 
 console.log(dl.head);

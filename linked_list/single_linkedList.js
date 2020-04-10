@@ -1,223 +1,215 @@
 class Node {
-      constructor(data, next = null) {
-            this.data = data;
-            this.next = next;
-      }
+    constructor(data, next = null) {
+        this.data = data;
+        this.next = next;
+    }
 }
 
 class LinkedList {
-      constructor() {
-            this.head = null;
-            this.size = 0;
-      }
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
 
-      // Insert first node
-      insertFirst(data) {
-            this.head = new Node(data, this.head);
-            this.size++;
-      }
+    // Insert first node
+    insertFirst(data) {
+        this.head = new Node(data, this.head);
+        this.size++;
+    }
 
-      // insert last
-      insertLast(data) {
-            let node = new Node(data);
+    // insert last
+    insertLast(data) {
+        let node = new Node(data);
 
-            if (!this.head) {
-                  this.head = node;
-            } else {
-                  let current = this.head;
-
-                  while (current.next) {
-                        current = current.next;
-                  }
-
-                  current.next = node;
-            }
-
-            this.size++;
-      }
-
-      // insert at
-      insertAt(data, index) {
-            if (index > 0 && index > this.size) {
-                  return false;
-            }
-
-            if (index === 0) {
-                  this.head = new Node(data);
-                  return;
-            }
-
-            let previous;
-            let count = 0;
-            let current = this.head;
-            let node = new Node(data);
-
-            while (count < index) {
-                  previous = current;
-                  current = current.next;
-                  count++;
-            }
-
-            node.next = current;
-            previous.next = node;
-            this.size++;
-      }
-
-      // remove the first data
-      removeFirst() {
-            if (this.size >= 1) {
-                  this.head = this.head.next;
-                  this.size--;
-            }
-      }
-
-      // remove the last data
-      removeLast() {
-            let prev;
+        if (!this.head) {
+            this.head = node;
+        } else {
             let current = this.head;
 
             while (current.next) {
-                  prev = current;
-                  current = current.next;
+                current = current.next;
             }
 
-            prev.next = null;
+            current.next = node;
+        }
+
+        this.size++;
+    }
+
+    // insert at
+    insertAt(data, index) {
+        if (index > 0 && index > this.size) {
+            return false;
+        }
+
+        if (index === 0) {
+            this.head = new Node(data);
+            return;
+        }
+
+        let previous;
+        let count = 0;
+        let current = this.head;
+        let node = new Node(data);
+
+        while (count < index) {
+            previous = current;
+            current = current.next;
+            count++;
+        }
+
+        node.next = current;
+        previous.next = node;
+        this.size++;
+    }
+
+    // remove the first data
+    removeFirst() {
+        if (this.size >= 1) {
+            this.head = this.head.next;
             this.size--;
-      }
+        }
+    }
+
+    // remove the last data
+    removeLast() {
+        let prev;
+        let current = this.head;
+
+        while (current.next) {
+            prev = current;
+            current = current.next;
+        }
+
+        prev.next = null;
+        this.size--;
+    }
 
 
-      // remove at index
-      removeAt(index) {
-            if (index > 0 && index > this.size) {
-                  return false;
+    // remove at index
+    removeAt(index) {
+        if (index > 0 && index > this.size) {
+            return false;
+        }
+
+        let previous;
+        let count = 0;
+        let current = this.head;
+
+        if (index === 0) {
+            this.head = current.next;
+
+        } else {
+            while (count < index) {
+                previous = current;
+                current = current.next;
+                count++;
             }
 
-            let previous;
-            let count = 0;
-            let current = this.head;
+            previous.next = current.next;
+        }
 
-            if (index === 0) {
-                  this.head = current.next;
-            } else {
-                  while (count < index) {
-                        previous = current;
-                        current = current.next;
-                        count++;
-                  }
-                  previous.next = current.next;
-            }
-            this.size--;
-      }
+        this.size--;
+    }
 
-      // get data at (index)
-      getAt(index) {
-            if (this.head === null) {
-                  return null;
-            }
+    // get data at (index)
+    getAt(index) {
+        if (!this.head) return null;
 
-            if (index > this.size - 1) {
-                  return null;
-            }
-
-            let count = 0;
-            let current = this.head;
-
-            while (current) {
-                  if (count === index) {
-                        return `Data => ${current.data}`;
-                  }
-
-                  current = current.next;
-                  count++;
-            }
-
+        if (index > this.size - 1) {
             return null;
-      }
+        }
 
-      // get data
-      getData(data) {
-            if (this.head === null) {
-                  return null;
+        let count = 0;
+        let current = this.head;
+
+        while (current) {
+            if (count === index) {
+                return `Data => ${current.data}`;
             }
 
+            current = current.next;
+            count++;
+        }
+
+        return null;
+    }
+
+    // get data
+    getData(data) {
+        if (!this.head) return null;
+
+        let current = this.head;
+
+        while (current) {
+            if (current.data === data) {
+                return true;
+            }
+            current = current.next;
+        }
+
+        return "---- Data not found ----";
+    }
+
+    // get the middle data
+    getMiddle() {
+        if (!this.head) return null;
+
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast !== null && fast.next !== null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return slow.data;
+    }
+
+    // reverse linked list
+    reverse() {
+        let prev;
+        let next;
+        let curr = this.head;
+
+        while (curr !== null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        this.head = prev;
+    }
+
+    // print all data
+    printData() {
+        if (!this.head) {
+            return null;
+
+        } else {
+            let result = "";
             let current = this.head;
 
             while (current) {
-                  if (current.data === data) {
-                        return true;
-                  }
-                  current = current.next;
+                result += current.data + " => ";
+                current = current.next;
             }
 
-            return "---- Data not found ----";
-      }
+            console.log(result + null);
+        }
+    }
 
-      // get the middle data
-      getMiddle() {
-            if (this.head === null) {
-                  return null;
-            }
+    // check size of linked lis
+    sizeData() {
+        return this.size;
+    }
 
-            let slow = this.head;
-            let fast = this.head;
-
-            while (fast !== null && fast.next !== null) {
-                  fast = fast.next.next;
-                  slow = slow.next;
-            }
-
-            return slow.data;
-      }
-
-      // reverse linked list
-      reverse() {
-            let prev;
-            let next;
-            let curr = this.head;
-
-            while (curr !== null) {
-                  next = curr.next;
-                  curr.next = prev;
-                  prev = curr;
-                  curr = next;
-            }
-
-            this.head = prev;
-      }
-
-      // print all data
-      printData() {
-            if (this.size === 0) {
-                  console.log("---- Data is empty ----");
-                  return;
-
-            } else {
-                  let result = "";
-                  let current = this.head;
-
-                  while (current) {
-                        result += current.data + " => ";
-                        current = current.next;
-                  }
-
-                  console.log(result + null);
-            }
-      }
-
-      // check size of linked lis
-      sizeData() {
-            if (this.size === 0) {
-                  return "---- Data is Empty ----";
-            } else {
-                  return "Data => " + this.size;
-            }
-      }
-
-      // clear all data
-      cleartData() {
-            this.head = null;
-            this.size = 0;
-      }
+    // clear all data
+    cleartData() {
+        this.head = null;
+        this.size = 0;
+    }
 }
 
 
