@@ -35,26 +35,23 @@ class DoubleLinkedList {
 
 
     insertAt(index, data) {
-        if (index > this.size) {
-            return;
+        if (index < 0 || index > this.size) return false;
 
-        } else {
-            let prev;
-            let count = 0;
-            let current = this.head;
-            let node = new Node(data);
+        let prev;
+        let count = 0;
+        let current = this.head;
+        let node = new Node(data);
 
-            while (count < index) {
-                prev = current;
-                current = current.next;
-                count++;
-            }
-
-            node.next = current;
-            node.previous = prev;
-            prev.next = node;
-            this.size++;
+        while (count < index) {
+            prev = current;
+            current = current.next;
+            count++;
         }
+
+        node.next = current;
+        node.previous = prev;
+        prev.next = node;
+        this.size++;
     }
 
 
@@ -78,23 +75,21 @@ class DoubleLinkedList {
 
 
     removeAt(index) {
-        if (index > this.size || !this.head) {
-            return;
+        if (index < 0 || index > this.size) return false;
 
-        } else {
-            let prev;
-            let count = 0;
-            let current = this.head;
+        let prev;
+        let count = 0;
+        let current = this.head;
 
-            while (count < index) {
-                prev = current;
-                current = current.next;
-                count++;
-            }
-
-            prev.next = current.next;
-            this.size--;
+        while (count < index) {
+            prev = current;
+            current = current.next;
+            count++;
         }
+
+        prev.next = current.next;
+        this.size--;
+
     }
 
 
@@ -146,10 +141,7 @@ const dl = new DoubleLinkedList();
 dl.insert(10);
 dl.insert(20);
 dl.insert(30);
-
+dl.removeAt(1);
 
 console.log(dl.getMiddle());
 console.log(dl.getData(30));
-
-
-console.log(dl.head);

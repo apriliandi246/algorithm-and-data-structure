@@ -37,13 +37,14 @@ class LinkedList {
     }
 
     // insert at
-    insertAt(data, index) {
-        if (index > 0 && index > this.size) {
+    insertAt(index, data) {
+        if (index < 0 || index > this.size) {
             return false;
         }
 
         if (index === 0) {
             this.head = new Node(data);
+            this.size = 1;
             return;
         }
 
@@ -88,7 +89,7 @@ class LinkedList {
 
     // remove at index
     removeAt(index) {
-        if (index > 0 && index > this.size) {
+        if (index < 0 || index > this.size) {
             return false;
         }
 
@@ -184,20 +185,17 @@ class LinkedList {
 
     // print all data
     printData() {
-        if (!this.head) {
-            return null;
+        if (!this.head) return null;
 
-        } else {
-            let result = "";
-            let current = this.head;
+        let result = "";
+        let current = this.head;
 
-            while (current) {
-                result += current.data + " => ";
-                current = current.next;
-            }
-
-            console.log(result + null);
+        while (current) {
+            result += current.data + " => ";
+            current = current.next;
         }
+
+        return result + null;
     }
 
     // check size of linked lis
@@ -222,11 +220,10 @@ ll.insertLast(40);
 ll.insertLast(50);
 ll.insertAt(15, 1);
 ll.insertLast(60);
+ll.insertAt(6, 2);
 
 ll.printData();
 
-ll.reverse();
+ll.removeAt(-9);
 
-ll.insertLast(5);
-
-ll.printData();
+console.log(ll.printData());
