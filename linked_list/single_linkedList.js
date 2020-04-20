@@ -23,6 +23,7 @@ class LinkedList {
 
         if (!this.head) {
             this.head = node;
+
         } else {
             let current = this.head;
 
@@ -213,17 +214,16 @@ class LinkedList {
 
 let ll = new LinkedList();
 
-ll.insertFirst(10);
-ll.insertLast(20);
-ll.insertLast(30);
-ll.insertLast(40);
-ll.insertLast(50);
-ll.insertAt(15, 1);
-ll.insertLast(60);
-ll.insertAt(6, 2);
 
-ll.printData();
+ll.insertLast(10);
+ll.insertLast(11);
+ll.insertLast(12);
+ll.insertLast(13);
+ll.insertLast(14);
+ll.insertFirst(5);
 
-ll.removeAt(-9);
+ll.removeAt(0);
+
+ll.insertFirst(5);
 
 console.log(ll.printData());

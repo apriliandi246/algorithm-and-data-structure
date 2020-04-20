@@ -35,12 +35,20 @@ class DoubleLinkedList {
 
 
     insertAt(index, data) {
+        let node = new Node(data);
+
         if (index < 0 || index > this.size) return false;
+
+        if (index === 0) {
+            node.next = this.head;
+            this.head = node;
+            this.size++;
+            return false;
+        }
 
         let prev;
         let count = 0;
         let current = this.head;
-        let node = new Node(data);
 
         while (count < index) {
             prev = current;
@@ -81,15 +89,19 @@ class DoubleLinkedList {
         let count = 0;
         let current = this.head;
 
-        while (count < index) {
-            prev = current;
-            current = current.next;
-            count++;
+        if (index !== 0) {
+            while (count < index) {
+                prev = current;
+                current = current.next;
+                count++;
+            }
+            prev.next = current.next;
+
+        } else {
+            this.head = current.next;
         }
 
-        prev.next = current.next;
         this.size--;
-
     }
 
 
@@ -140,8 +152,10 @@ const dl = new DoubleLinkedList();
 
 dl.insert(10);
 dl.insert(20);
-dl.insert(30);
-dl.removeAt(1);
+dl.insertAt(0, 5);
+dl.insertAt(0, 2);
+dl.insertAt(1, 3);
 
-console.log(dl.getMiddle());
-console.log(dl.getData(30));
+dl.removeAt(0);
+
+console.log(dl.head);

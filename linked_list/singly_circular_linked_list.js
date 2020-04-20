@@ -38,7 +38,7 @@ class SinglyCircularLinkedList {
     insertAt(index, data) {
         let node = new Node(data);
 
-        if (index < 0 || index > this.size) return false;
+        if (index < 0 || index > this.size) return;
 
         if (index === 0) {
             this.head = node;
@@ -59,6 +59,22 @@ class SinglyCircularLinkedList {
         node.next = current;
         previous.next = node;
         this.size++;
+    }
+
+
+    remove() {
+        if (!this.head) return;
+
+        let prev;
+        let current = this.head;
+
+        while (current.next !== this.head) {
+            prev = current;
+            current = current.next;
+        }
+
+        prev.next = this.head;
+        this.size--;
     }
 
 
@@ -84,6 +100,6 @@ ll.insert(40);
 ll.insert(50);
 ll.insertAt(5, 60);
 
-ll.printData();
+ll.remove(5);
 
-console.log(ll.head.next.next.next.next.next);
+ll.printData();
