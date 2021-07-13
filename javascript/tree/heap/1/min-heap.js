@@ -4,123 +4,114 @@
 // right-child: i * 2 + 1
 
 class MinHeap {
-   constructor() {
-      this.heap = [null];
-      this.result = [];
-   }
+	constructor() {
+		this.heap = [null];
+		this.result = [];
+	}
 
-   // menambah data
-   insert(num) {
-      this.heap.push(num);
+	// menambah data
+	insert(num) {
+		this.heap.push(num);
 
-      if (this.heap.length >= 2) {
-         let idx = this.heap.length - 1;
+		if (this.heap.length >= 2) {
+			let idx = this.heap.length - 1;
 
-         while (this.heap[idx] < this.heap[Math.floor(idx / 2)]) {
-            if (idx >= 1) {
-               [this.heap[Math.floor(idx / 2)], this.heap[idx]] = [
-                  this.heap[idx],
-                  this.heap[Math.floor(idx / 2)],
-               ];
-            }
+			while (this.heap[idx] < this.heap[Math.floor(idx / 2)]) {
+				if (idx >= 1) {
+					[this.heap[Math.floor(idx / 2)], this.heap[idx]] = [
+						this.heap[idx],
+						this.heap[Math.floor(idx / 2)],
+					];
+				}
 
-            if (Math.floor(idx / 2) > 1) {
-               idx = Math.floor(idx / 2);
-            } else {
-               break;
-            }
-         }
-      }
-   }
+				if (Math.floor(idx / 2) > 1) {
+					idx = Math.floor(idx / 2);
+				} else {
+					break;
+				}
+			}
+		}
+	}
 
-   // menghapus data
-   remove() {
-      let smallest = this.heap[1];
+	// menghapus data
+	remove() {
+		let smallest = this.heap[1];
 
-      if (this.heap.length > 2) {
-         // push data ke result
-         this.result.push(this.heap[1]);
+		if (this.heap.length > 2) {
+			// push data ke result
+			this.result.push(this.heap[1]);
 
-         // data pertama diubah dengan data yang terakhir
-         this.heap[1] = this.heap[this.heap.length - 1];
+			// data pertama diubah dengan data yang terakhir
+			this.heap[1] = this.heap[this.heap.length - 1];
 
-         // menghapus data terakhir yang sudah pindah ke parent
-         this.heap.pop();
+			// menghapus data terakhir yang sudah pindah ke parent
+			this.heap.pop();
 
-         // jika data cuma ada 3
-         if (this.heap.length === 3) {
-            // jika parentnya lebih besar dari childnya
-            if (this.heap[1] > this.heap[2]) {
-               // mnegubah posisinya
-               [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
-            }
+			// jika data cuma ada 3
+			if (this.heap.length === 3) {
+				// jika parentnya lebih besar dari childnya
+				if (this.heap[1] > this.heap[2]) {
+					// mnegubah posisinya
+					[this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
+				}
 
-            return smallest;
-         }
+				return smallest;
+			}
 
-         let i = 1;
-         let right = i * 2 + 1;
-         let left = i * 2;
+			let i = 1;
+			let right = i * 2 + 1;
+			let left = i * 2;
 
-         // membandingkan parent dengan child-childnya
-         while (
-            this.heap[i] >= this.heap[left] ||
-            this.heap[i] >= this.heap[right]
-         ) {
-            // jika child left lebih kecil dari child right
-            if (this.heap[left] < this.heap[right]) {
-               [this.heap[i], this.heap[left]] = [
-                  this.heap[left],
-                  this.heap[i],
-               ];
+			// membandingkan parent dengan child-childnya
+			while (
+				this.heap[i] >= this.heap[left] ||
+				this.heap[i] >= this.heap[right]
+			) {
+				// jika child left lebih kecil dari child right
+				if (this.heap[left] < this.heap[right]) {
+					[this.heap[i], this.heap[left]] = [this.heap[left], this.heap[i]];
 
-               i = 2 * i;
+					i = 2 * i;
 
-               // jika child right lebih kecil dari child left
-            } else {
-               [this.heap[i], this.heap[right]] = [
-                  this.heap[right],
-                  this.heap[i],
-               ];
+					// jika child right lebih kecil dari child left
+				} else {
+					[this.heap[i], this.heap[right]] = [this.heap[right], this.heap[i]];
 
-               i = i * 2 + 1;
-            }
+					i = i * 2 + 1;
+				}
 
-            left = i * 2;
-            right = i * 2 + 1;
+				left = i * 2;
+				right = i * 2 + 1;
 
-            if (
-               this.heap[left] === undefined ||
-               this.heap[right] === undefined
-            ) {
-               break;
-            }
-         }
-      } else if (this.heap.length === 2) {
-         this.result.push(this.heap.pop());
-      } else {
-         return null;
-      }
-   }
+				if (this.heap[left] === undefined || this.heap[right] === undefined) {
+					break;
+				}
+			}
+		} else if (this.heap.length === 2) {
+			this.result.push(this.heap.pop());
+		} else {
+			return null;
+		}
+	}
 
-   findData(data) {
-      let i = 0;
+	findData(data) {
+		let i = 0;
 
-      while (i < this.heap.length && this.heap[i] !== data) {
-         i++;
-      }
+		while (i < this.heap.length && this.heap[i] !== data) {
+			i++;
+		}
 
-      if (this.heap[i] === data) {
-         let result = {
-            data,
-            rightChild: this.heap[i * 2 + 1] ? this.heap[i * 2 + 1] : null,
-            leftChild: this.heap[i * 2] ? this.heap[i * 2] : null,
-         };
-         return result;
-      } else {
-         return "Data not found";
-      }
-   }
+		if (this.heap[i] === data) {
+			let result = {
+				data,
+				rightChild: this.heap[i * 2 + 1] ? this.heap[i * 2 + 1] : null,
+				leftChild: this.heap[i * 2] ? this.heap[i * 2] : null,
+			};
+			return result;
+		} else {
+			return "Data not found";
+		}
+	}
 }
 
 const heap = new MinHeap();
@@ -139,7 +130,7 @@ console.log(heap.findData(1));
 console.log(heap.heap);
 
 for (let i = 0; i <= 6; i++) {
-   heap.remove();
+	heap.remove();
 }
 
 console.log(heap.result);

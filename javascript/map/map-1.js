@@ -3,56 +3,56 @@
 // contoh lain yaiut daftar no hp. Nama sebagai Key dan nomor hp nya sebagai Valuenya.
 
 class MyMap {
-   constructor() {
-      this.collection = {};
-      this.count = 0;
-   }
+	constructor() {
+		this.collection = {};
+		this.count = 0;
+	}
 
-   // menampilkan berapa data yang tersimpan
-   size() {
-      return this.count;
-   }
+	// menampilkan berapa data yang tersimpan
+	size() {
+		return this.count;
+	}
 
-   // menambah data
-   set(key, value) {
-      this.collection[key] = value;
-      this.count++;
-   }
+	// menambah data
+	set(key, value) {
+		this.collection[key] = value;
+		this.count++;
+	}
 
-   // megecek key apakah ada, bila ada benilai true dan sebaliknya
-   has(key) {
-      return key in this.collection;
-   }
+	// megecek key apakah ada, bila ada benilai true dan sebaliknya
+	has(key) {
+		return key in this.collection;
+	}
 
-   // mengambil data berdasarkan key
-   get(key) {
-      return key in this.collection ? this.collection[key] : null;
-   }
+	// mengambil data berdasarkan key
+	get(key) {
+		return key in this.collection ? this.collection[key] : null;
+	}
 
-   // mengahpus data
-   delete(key) {
-      if (key in this.collection) {
-         delete this.collection[key];
-         this.count--;
-      }
-   }
+	// mengahpus data
+	delete(key) {
+		if (key in this.collection) {
+			delete this.collection[key];
+			this.count--;
+		}
+	}
 
-   // menampilkan semua value dari setiap keys
-   values() {
-      let result = [];
+	// menampilkan semua value dari setiap keys
+	values() {
+		let result = [];
 
-      for (let key of Object.keys(this.collection)) {
-         result.push(this.collection[key]);
-      }
+		for (let key of Object.keys(this.collection)) {
+			result.push(this.collection[key]);
+		}
 
-      return result.length > 0 ? result : null;
-   }
+		return result.length > 0 ? result : null;
+	}
 
-   // menghapus semua data
-   clear() {
-      this.collection = {};
-      this.count++;
-   }
+	// menghapus semua data
+	clear() {
+		this.collection = {};
+		this.count++;
+	}
 }
 
 let map = new MyMap();

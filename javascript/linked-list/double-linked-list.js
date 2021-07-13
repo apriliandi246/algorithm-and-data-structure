@@ -1,139 +1,139 @@
 class Node {
-   constructor(data) {
-      this.data = data;
-      this.next = null;
-      this.previous = null;
-   }
+	constructor(data) {
+		this.data = data;
+		this.next = null;
+		this.previous = null;
+	}
 }
 
 class DoubleLinkedList {
-   constructor() {
-      this.head = null;
-      this.size = 0;
-   }
+	constructor() {
+		this.head = null;
+		this.size = 0;
+	}
 
-   insert(data) {
-      let node = new Node(data);
+	insert(data) {
+		let node = new Node(data);
 
-      if (!this.head) {
-         this.head = node;
-         this.size++;
-         return;
-      }
+		if (!this.head) {
+			this.head = node;
+			this.size++;
+			return;
+		}
 
-      let current = this.head;
+		let current = this.head;
 
-      while (current.next !== null) {
-         current = current.next;
-      }
+		while (current.next !== null) {
+			current = current.next;
+		}
 
-      current.next = node;
-      node.previous = current;
-      this.size++;
-   }
+		current.next = node;
+		node.previous = current;
+		this.size++;
+	}
 
-   insertAt(index, data) {
-      let node = new Node(data);
+	insertAt(index, data) {
+		let node = new Node(data);
 
-      if (index < 0 || index > this.size) return false;
+		if (index < 0 || index > this.size) return false;
 
-      if (index === 0) {
-         node.next = this.head;
-         this.head = node;
-         this.size++;
-         return false;
-      }
+		if (index === 0) {
+			node.next = this.head;
+			this.head = node;
+			this.size++;
+			return false;
+		}
 
-      let prev;
-      let count = 0;
-      let current = this.head;
+		let prev;
+		let count = 0;
+		let current = this.head;
 
-      while (count < index) {
-         prev = current;
-         current = current.next;
-         count++;
-      }
+		while (count < index) {
+			prev = current;
+			current = current.next;
+			count++;
+		}
 
-      node.next = current;
-      node.previous = prev;
-      prev.next = node;
-      this.size++;
-   }
+		node.next = current;
+		node.previous = prev;
+		prev.next = node;
+		this.size++;
+	}
 
-   remove() {
-      if (!this.head) {
-         return;
-      } else {
-         let prev;
-         let current = this.head;
+	remove() {
+		if (!this.head) {
+			return;
+		} else {
+			let prev;
+			let current = this.head;
 
-         while (current.next !== null) {
-            prev = current;
-            current = current.next;
-         }
+			while (current.next !== null) {
+				prev = current;
+				current = current.next;
+			}
 
-         prev.next = null;
-         this.size--;
-      }
-   }
+			prev.next = null;
+			this.size--;
+		}
+	}
 
-   removeAt(index) {
-      if (index < 0 || index > this.size) return false;
+	removeAt(index) {
+		if (index < 0 || index > this.size) return false;
 
-      let prev;
-      let count = 0;
-      let current = this.head;
+		let prev;
+		let count = 0;
+		let current = this.head;
 
-      if (index !== 0) {
-         while (count < index) {
-            prev = current;
-            current = current.next;
-            count++;
-         }
-         prev.next = current.next;
-      } else {
-         this.head = current.next;
-      }
+		if (index !== 0) {
+			while (count < index) {
+				prev = current;
+				current = current.next;
+				count++;
+			}
+			prev.next = current.next;
+		} else {
+			this.head = current.next;
+		}
 
-      this.size--;
-   }
+		this.size--;
+	}
 
-   getData(data) {
-      if (!this.head) return null;
+	getData(data) {
+		if (!this.head) return null;
 
-      let current = this.head;
+		let current = this.head;
 
-      while (current) {
-         if (current.data === data) return true;
+		while (current) {
+			if (current.data === data) return true;
 
-         current = current.next;
-      }
+			current = current.next;
+		}
 
-      return false;
-   }
+		return false;
+	}
 
-   getMiddle() {
-      if (!this.head) return null;
+	getMiddle() {
+		if (!this.head) return null;
 
-      let slow = this.head;
-      let fast = this.head;
+		let slow = this.head;
+		let fast = this.head;
 
-      while (fast !== null && fast.next !== null) {
-         fast = fast.next.next;
-         slow = slow.next;
-      }
+		while (fast !== null && fast.next !== null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
 
-      return slow.data;
-   }
+		return slow.data;
+	}
 
-   sizeData() {
-      return this.size;
-   }
+	sizeData() {
+		return this.size;
+	}
 
-   clearData() {
-      this.head = null;
-      this.size = 0;
-   }
+	clearData() {
+		this.head = null;
+		this.size = 0;
+	}
 }
 
 const dl = new DoubleLinkedList();

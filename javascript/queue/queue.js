@@ -1,39 +1,39 @@
 // Queue => First In, First Out
 
 class Queue {
-   constructor() {
-      this.collection = [];
-   }
+	constructor() {
+		this.collection = [];
+	}
 
-   enqueue(element) {
-      this.collection.push(element);
-   }
+	enqueue(element) {
+		this.collection.push(element);
+	}
 
-   dequeue() {
-      if (this.isEmpty()) {
-         console.log("Data is empty");
-         return;
-      }
+	dequeue() {
+		if (this.isEmpty()) {
+			console.log("Data is empty");
+			return;
+		}
 
-      this.collection.shift();
-   }
+		this.collection.shift();
+	}
 
-   front() {
-      if (this.isEmpty()) {
-         console.log("Data is empty");
-         return;
-      }
+	front() {
+		if (this.isEmpty()) {
+			console.log("Data is empty");
+			return;
+		}
 
-      return this.collection[0];
-   }
+		return this.collection[0];
+	}
 
-   isEmpty() {
-      return this.collection.length === 0;
-   }
+	isEmpty() {
+		return this.collection.length === 0;
+	}
 
-   printQueue() {
-      this.collection.forEach((data) => console.log(data));
-   }
+	printQueue() {
+		this.collection.forEach((data) => console.log(data));
+	}
 }
 
 let queue = new Queue();

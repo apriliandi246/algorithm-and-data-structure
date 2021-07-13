@@ -1,51 +1,51 @@
 class Node {
-   constructor(data, next = null) {
-      this.data = data;
-      this.next = next;
-   }
+	constructor(data, next = null) {
+		this.data = data;
+		this.next = next;
+	}
 }
 
 class LinkedListQueue {
-   constructor() {
-      this.head = null;
-      this.size = 0;
-   }
+	constructor() {
+		this.head = null;
+		this.size = 0;
+	}
 
-   enqueue(data) {
-      let node = new Node(data);
-      let current;
+	enqueue(data) {
+		let node = new Node(data);
+		let current;
 
-      if (!this.head) {
-         this.head = node;
-      } else {
-         current = this.head;
+		if (!this.head) {
+			this.head = node;
+		} else {
+			current = this.head;
 
-         while (current.next) {
-            current = current.next;
-         }
+			while (current.next) {
+				current = current.next;
+			}
 
-         current.next = node;
-      }
-      this.size++;
-   }
+			current.next = node;
+		}
+		this.size++;
+	}
 
-   dequeue() {
-      if (!this.head) {
-         return null;
-      } else {
-         this.head = this.head.next;
-         this.size--;
-      }
-   }
+	dequeue() {
+		if (!this.head) {
+			return null;
+		} else {
+			this.head = this.head.next;
+			this.size--;
+		}
+	}
 
-   front() {
-      let current = this.head;
-      return `Data : ${current.data}`;
-   }
+	front() {
+		let current = this.head;
+		return `Data : ${current.data}`;
+	}
 
-   sizeData() {
-      return `Size : ${this.size}`;
-   }
+	sizeData() {
+		return `Size : ${this.size}`;
+	}
 }
 
 const ql = new LinkedListQueue();
