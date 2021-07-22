@@ -28,6 +28,4 @@ For compiling `Typescript` code, I using module called `ts-node`.
 
 - `typescript` - Contain `Typescript` code.
 
-<br>
-<h3 align="center">(⌐■_■)</h3>
-<br>
+<h3 align="right">(⌐■_■)</h3>
